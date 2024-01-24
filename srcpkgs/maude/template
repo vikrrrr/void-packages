@@ -1,0 +1,20 @@
+# Template file for 'maude'
+pkgname=maude
+version=3.4
+revision=1
+build_style=gnu-configure
+# TODO package yices2 and cvc4 for SMT in Maude
+configure_args="--datadir=/usr/share/maude --with-yices2=no"
+hostmakedepends="libtool automake bison flex"
+makedepends="libsigsegv-devel gmpxx-devel libtecla-devel buddy-devel"
+short_desc="Language based on Rewriting Logic"
+maintainer="Arthur Michas <vikr+void@protonmail.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/maude-lang/Maude"
+changelog="https://github.com/maude-lang/Maude/blob/master/ChangeLog"
+distfiles="https://github.com/maude-lang/Maude/archive/refs/tags/Maude${version}.tar.gz"
+checksum=2175845809a1dfcf0da4d4adf709cea4b933859d3d37e012b4edb09f97514fca
+
+post_install() {
+	vinstall $FILESDIR/maude.sh 644 etc/profile.d
+}
