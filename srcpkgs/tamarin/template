@@ -1,0 +1,31 @@
+# Template file for 'tamarin'
+# FIXME Hack. Not for upstream.
+pkgname=tamarin
+version=1.8.0
+revision=1
+hostmakedepends="ghc stack tar xz"
+makedepends="ncurses-libtinfo-devel zlib-devel"
+depends="graphviz maude"
+short_desc="Tool for the symbolic modeling and analysis of security protocols"
+maintainer="Arthur Michas <vikr+void@protonmail.com>"
+license="GPL-3.0-only"
+homepage="https://github.com/tamarin-prover/tamarin-prover"
+changelog="https://github.com/tamarin-prover/tamarin-prover/blob/develop/CHANGES"
+distfiles="https://github.com/tamarin-prover/tamarin-prover/archive/refs/tags/${version}.tar.gz"
+checksum=0c6433c461acfc675dd9437653322b8cfe6cd5fac1a14d034da8430afe1e090f
+nocross=yes
+nopie_files="
+ /usr/bin/tamarin-prover
+"
+
+do_build() {
+	stack upgrade
+	STACK_ROOT="$wrksrc/.stack" stack ${makejobs} build \
+		${make_build_args}
+}
+
+do_install() {
+	vmkdir usr/bin
+	STACK_ROOT="$wrksrc/.stack" stack install \
+			   ${make_build_args} --local-bin-path=${DESTDIR}/usr/bin
+}
