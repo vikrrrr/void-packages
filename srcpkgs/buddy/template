@@ -1,0 +1,32 @@
+# Template file for 'buddy'
+pkgname=buddy
+version=2.4
+revision=1
+build_style=gnu-configure
+hostmakedepends="libtool automake"
+short_desc="Binary Decision Diagrams"
+maintainer="Arthur Michas <vikr+void@protonmail.com>"
+license="custom:BuDDy"
+homepage="https://github.com/utwente-fmt/buddy"
+changelog="https://github.com/utwente-fmt/buddy/blob/master/ChangeLog"
+distfiles="https://github.com/utwente-fmt/buddy/archive/refs/tags/v${version}.tar.gz"
+checksum=361a86540b459d40faef4ec85a32ff153415e6530e8e6a23b2eb5008d15384ce
+
+pre_configure() {
+	autoreconf -fi
+}
+
+post_install() {
+	vlicense ${FILESDIR}/LICENSE
+}
+
+buddy-devel_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove usr/lib/pkgconfig
+		vmove 'usr/lib/*.a'
+		vmove 'usr/lib/*.so'
+	}
+}
