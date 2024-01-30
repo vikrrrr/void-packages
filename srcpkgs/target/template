@@ -1,0 +1,19 @@
+# Template file for 'target'
+pkgname=target
+version=1.0.0
+revision=1
+build_style=go
+go_import_path="github.com/devops-rob/target-cli"
+go_build_tags="release"
+go_ldflags="-X ${go_import_path}/cmd.version=${version}"
+short_desc="A CLI tool to manage context profiles for HashiCorp tools"
+maintainer="vikrrrr <vikr@protonmail.com>"
+license="Apache-2.0"
+homepage="https://github.com/devops-rob/target-cli"
+distfiles="${homepage}/archive/${version}.tar.gz"
+checksum=0d8f646a8243b73722df56a05d9a35095e56e1376f2780219d298aaf5cb29948
+
+do_install() {
+    vbin ${GOPATH}/bin/target-cli target
+    vlicense LICENSE
+}
