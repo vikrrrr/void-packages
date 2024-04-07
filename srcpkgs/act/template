@@ -1,6 +1,6 @@
 # Template file for 'act'
 pkgname=act
-version=0.2.51
+version=0.2.61
 revision=1
 build_style=go
 go_import_path="github.com/nektos/act"
@@ -10,7 +10,7 @@ maintainer="0x5c <dev@0x5c.io>"
 license="MIT, Apache-2.0"
 homepage="https://github.com/nektos/act"
 distfiles="https://github.com/nektos/act/archive/refs/tags/v${version}.tar.gz"
-checksum=5b8d557ab72e9e5ee78663eadc7b9dfd0b9a68b7b381edeee527d77f60541773
+checksum=bd75ea2c0d3e0063ac7e30780ca0ca38c35ddfcc9f07da500540aa87e32bb564
 
 post_install() {
 	vlicense LICENSE
