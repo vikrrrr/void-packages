@@ -1,0 +1,22 @@
+# Template file for 'xorgxrdp'
+pkgname=xorgxrdp
+version=0.10.2
+revision=1
+archs="x86_64"
+build_style=gnu-configure
+hostmakedepends="pkg-config automake autoconf libtool nasm"
+makedepends="libdrm-devel xorg-server-devel xrdp"
+short_desc="Xorg drivers for xrdp"
+maintainer="vikrrrr <vikr+void@protonmail.com>"
+license="X11"
+homepage="https://www.xrdp.org"
+distfiles="https://github.com/neutrinolabs/xorgxrdp/archive/refs/tags/v${version}.tar.gz"
+checksum="5ffe2d71190a7246e1f0940e3c1558ff92a0b4c385c9f1c68ac3f9e23b75314b"
+
+pre_configure() {
+	./bootstrap
+}
+
+post_install() {
+	vlicense COPYING LICENSE
+}

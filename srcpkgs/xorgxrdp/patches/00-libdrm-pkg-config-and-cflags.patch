@@ -1,0 +1,24 @@
+diff --git a/configure.ac b/configure.ac
+index 6612007..c470b7f 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -54,6 +54,7 @@ AX_GCC_FUNC_ATTRIBUTE([format])
+ 
+ PKG_CHECK_MODULES([XORG_SERVER], [xorg-server >= 0], [],
+   [AC_MSG_ERROR([please install xserver-xorg-dev, xorg-x11-server-sdk or xorg-x11-server-devel])])
++PKG_CHECK_MODULES([LIBDRM], [libdrm >= 0], [], [AC_MSG_ERROR([please install libdrm-dev or libdrm-devel])])
+ if test "x${enable_glamor}" = "xyes"; then
+   PKG_CHECK_MODULES([XORG_SERVER_GLAMOR], [xorg-server >= 1.19.0])
+   PKG_CHECK_MODULES([XORG_SERVER_GBM], [gbm >= 0], [], [AC_MSG_ERROR([please install libgbm-dev or mesa-libgbm-devel])])
+diff --git a/xrdpdev/Makefile.am b/xrdpdev/Makefile.am
+index 6787c66..30c9019 100644
+--- a/xrdpdev/Makefile.am
++++ b/xrdpdev/Makefile.am
+@@ -13,6 +13,7 @@ endif
+ AM_CFLAGS = \
+   $(XORG_SERVER_CFLAGS) \
+   $(XRDP_CFLAGS) \
++  $(LIBDRM_CFLAGS) \
+   -DPACKAGE_VERSION_MAJOR=@package_version_major@ \
+   -DPACKAGE_VERSION_MINOR=@package_version_minor@ \
+   -DPACKAGE_VERSION_PATCHLEVEL=@package_version_patchlevel@ \
