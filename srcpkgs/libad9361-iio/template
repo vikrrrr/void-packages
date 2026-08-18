@@ -1,0 +1,22 @@
+# Template file for 'libad9361-iio'
+pkgname=libad9361-iio
+version=0.3
+revision=1
+build_style=cmake
+makedepends="libiio-devel"
+short_desc="IIO support library for the AD9361 family chips"
+maintainer="Arthur Michas <vikr+void@protonmail.com>"
+license="LGPL-2.1-or-later"
+homepage="https://github.com/analogdevicesinc/libad9361-iio"
+distfiles="https://github.com/analogdevicesinc/libad9361-iio/archive/refs/tags/v${version}.tar.gz"
+checksum=1dc35dd997e1938a97489fa1f349ee16889f9de8901a2c7af46184468dc90598
+
+libad9361-iio-devel_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove usr/lib/pkgconfig
+		vmove usr/lib/*.so
+	}
+}
